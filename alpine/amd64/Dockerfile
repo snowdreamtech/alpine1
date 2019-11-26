@@ -4,4 +4,8 @@ LABEL maintainer="snowdream <sn0wdr1am@icloud.com>"
 
 COPY .vimrc /root/
 
-RUN apk add --no-cache vim
+RUN echo @edge http://dl-cdn.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
+    && echo @edgecommunity http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories \
+    && echo @testing http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories  \
+    apk add --no-cache vim \ 
+    && rm -rf /tmp/* /var/cache/apk/*
